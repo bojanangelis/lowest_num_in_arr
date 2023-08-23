@@ -1,7 +1,31 @@
 #include <stdio.h>
 
+int findLargest(int *array, int n) {
+    int i;
+    int maxNum;
+    int maxIdx = -1;
+    for (i = 1; i < n - 1; i++) {
+        if (array[i] > array[i - 1] && array[i] > array[i + 1]) {
+            if (maxIdx == -1 || array[i] > maxNum) {
+                maxIdx = i;
+                maxNum = array[i];
+            }
+        }
+    }
+    return maxIdx;
+}
+
 int main() {
-    
+    int n;
+    scanf("%d", &n);
+    int array[100];
+    int i;
+    for (i = 0; i < n; i++) {
+        scanf("%d", &array[i]);
+    }
+    int idx = findLargest(array, n);
+    if (idx == -1) printf("No  element match the criteria");
+    printf("%d", array[idx]);
     return 0;
 }
 
